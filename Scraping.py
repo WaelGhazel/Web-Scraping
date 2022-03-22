@@ -14,6 +14,7 @@ from pprint import pprint
 import csv
 from petl import header
 
+
 #code
 driver = webdriver.Chrome(service=Service("./Assets/chromedriver.exe"),options=webdriver.ChromeOptions())
 driver.get("https://www.jumia.com.tn/")
@@ -75,6 +76,10 @@ while(driver.find_elements(by=By.CSS_SELECTOR, value="a[aria-label='Page suivant
 time.sleep(1)
 pprint(products)
 print(len(products))
+
+#removing old saves
+if os.path.exists("./Assets/Result.csv"):
+  os.remove("./Assets/Result.csv")
 
 with open('./Assets/Result.csv', 'w', encoding='UTF8', newline='') as f:
     fieldnames = list(header(products))
